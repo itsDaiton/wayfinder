@@ -1,0 +1,47 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Generated native folders (expo prebuild recreates them; never commit or hand-edit)
+/android
+/ios
+.kotlin/
+
+# Secrets: Mapy.com API key, signing keystore and its passwords (SPEC §9.6)
+.env
+.env*.local
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+
+# Build output
+*.apk
+*.aab
+
+# Metro
+.metro-health-check*
+
+# Tooling caches
+.eslintcache
+*.tsbuildinfo
+*.orig.*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# OS
+.DS_Store
+
+# Claude Code personal settings
+.claude/settings.local.json

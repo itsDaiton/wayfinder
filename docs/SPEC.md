@@ -2,7 +2,7 @@
 
 **Status:** v1 and v2 defined, technical decisions agreed · **Owner:** David · **Last updated:** 25 Sep 2026
 
-Sections 1–8 describe how the app should behave. Section 9 records the technical decisions. The build order lives in [PLAN.md](PLAN.md).
+Sections 1–8 describe how the app should behave. Section 9 records the technical decisions. The work is tracked as GitHub issues: version 1 in epic [#2](https://github.com/itsDaiton/wayfinder/issues/2), version 2 in [#17](https://github.com/itsDaiton/wayfinder/issues/17).
 
 ---
 
@@ -147,7 +147,7 @@ Built only after version 1 works well. No AI is involved.
 - Picking an option turns it into a normal route. It can be edited, saved, tagged and exported exactly like a manually planned route.
 - Loops that go out and back along the same path for most of their length should be avoided where possible.
 
-Still to decide before building v2:
+Still to decide before building v2 (tracked in [#17](https://github.com/itsDaiton/wayfinder/issues/17)):
 
 - What to show when no option lands within 5% of the target.
 - How much doubling back counts as "most of their length".
@@ -206,7 +206,7 @@ Agreed in the spec review on 25 Sep 2026.
 
 - `snapDistance` over 200 m means the tap is rejected. A `404` with `errorCode` 7 (outside the network for this activity) or 9 (not connected) means there's no path connection.
 - Rate limits: 30 requests per second for routing and elevation, at most 15 waypoints per routing request.
-- **Free tier:** 250,000 credits per month. Paid use needs explicit consent, so the worst case is the API stopping until the 1st of the next month, never a bill. Actual credit use is measured in milestone 0.
+- **Free tier:** 250,000 credits per month. Paid use needs explicit consent, so the worst case is the API stopping until the 1st of the next month, never a bill. Actual credit use is measured in the spike ([#3](https://github.com/itsDaiton/wayfinder/issues/3)).
 - All Mapy.com calls go through one small provider interface (route between two points, elevation for a list of positions, tile URL for a style). Switching to another provider, such as openrouteservice, means replacing one module.
 
 ### 9.3 Route model

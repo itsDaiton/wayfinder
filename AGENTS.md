@@ -89,9 +89,19 @@ Tickets follow the skeleton in [`.github/ISSUE_TEMPLATE.md`](./.github/ISSUE_TEM
 
 **Structure and dependencies:**
 - Tickets are sub-issues of their epic.
-- Each ticket's **Depends on** section lists its blockers, one bullet each, linked with `#n`.
-- A ticket is ready to pick up when every blocker is closed.
-- Also add GitHub's native "blocked by" link when your tools can; keep it in sync with the Depends on list.
+- Each ticket's **Depends on** section lists its blockers, one bullet per blocker starting with `#n` (`- #3 — the Expo project`), or a single `- None (can start immediately)`.
+- **Every bullet is also a native GitHub "blocked by" link**, so tools can tell which tickets are ready. Keep the two in sync: when you add or remove one, do the other.
+
+  ```bash
+  # <blocker-id> is the blocker's database id, NOT its #number:
+  gh api repos/itsDaiton/wayfinder/issues/<blocker> --jq .id
+
+  gh api --method POST repos/itsDaiton/wayfinder/issues/<n>/dependencies/blocked_by -F issue_id=<blocker-id>
+  gh api --method DELETE repos/itsDaiton/wayfinder/issues/<n>/dependencies/blocked_by/<blocker-id>
+  gh api repos/itsDaiton/wayfinder/issues/<n>/dependencies/blocked_by   # list blockers
+  ```
+
+- **A ticket is ready to pick up when it has no open blockers**: `gh api repos/itsDaiton/wayfinder/issues/<n> --jq .issue_dependencies_summary.blocked_by` returns `0`. A blocker must be closed, not just referenced, to unblock it.
 
 ---
 

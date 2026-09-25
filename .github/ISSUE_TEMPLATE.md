@@ -55,7 +55,7 @@ deliberately not unit-tested (checked on the phone instead) and why.
 
 ## Depends on
 
-- None (can start immediately) <!-- or one bullet per blocker, linked: `- #NN — what it provides` -->
+- None (can start immediately) <!-- or one bullet per blocker, starting with the link: `- #NN — what it provides`. Add a native "blocked by" link for each (AGENTS.md → Issues). -->
 
 ## Out of scope
 

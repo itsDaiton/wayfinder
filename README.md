@@ -14,13 +14,14 @@ The app runs as an Expo **development build**, a debug version of Wayfinder inst
 **Once per machine**
 
 1. Install Node, using the version in [`.nvmrc`](.nvmrc).
-2. Install Android Studio, which brings the Android SDK, the emulator and a JDK. Then follow Expo's [Android setup for development builds](https://docs.expo.dev/get-started/set-up-your-environment/?platform=android&device=physical&mode=development-build&buildEnv=local). It covers `ANDROID_HOME` and turning on USB debugging on the phone.
-3. Run `npm install`.
+2. Turn on pnpm with `corepack enable pnpm`. Corepack comes with Node 24 and runs the pnpm version pinned in `package.json`.
+3. Install Android Studio, which brings the Android SDK, the emulator and a JDK. Then follow Expo's [Android setup for development builds](https://docs.expo.dev/get-started/set-up-your-environment/?platform=android&device=physical&mode=development-build&buildEnv=local). It covers `ANDROID_HOME` and turning on USB debugging on the phone.
+4. Run `pnpm install`.
 
 **Day to day**
 
-- `npm run android` builds the development build, installs it on the connected phone (or the running emulator) and starts Metro. Use it the first time, and again whenever native code changes: a new native package or new `app.json` plugins.
-- Otherwise, `npm start` is enough. Open Wayfinder on the phone and code changes appear right away.
+- `pnpm android` builds the development build, installs it on the connected phone (or the running emulator) and starts Metro. Use it the first time, and again whenever native code changes: a new native package or new `app.json` plugins.
+- Otherwise, `pnpm start` is enough. Open Wayfinder on the phone and code changes appear right away.
 
 ## See the phone screen in VS Code
 
@@ -30,4 +31,4 @@ VS Code suggests the recommended extensions when you open the repo: ESLint, Pret
   - It officially supports only macOS.
   - It's commercial, with a free trial and a free plan for hobbyists.
 - **[scrcpy](https://github.com/Genymobile/scrcpy)** is free and works on Windows, macOS and Linux. It mirrors the real phone, over USB or Wi-Fi, into a window you control with the mouse and keyboard. Put it next to VS Code and run `scrcpy` with the phone connected. The real phone is the better test for GPS and touch, which an emulator only fakes.
-- The **Android Emulator** from Android Studio also works in its own window: start it, then run `npm run android`.
+- The **Android Emulator** from Android Studio also works in its own window: start it, then run `pnpm android`.

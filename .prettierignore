@@ -1,2 +1,2 @@
-# npm writes this file itself; formatting it would fight every install.
-package-lock.json
+# pnpm writes this file itself; formatting it would fight every install.
+pnpm-lock.yaml

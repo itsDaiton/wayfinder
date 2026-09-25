@@ -1,5 +1,7 @@
 # dependencies
 node_modules/
+# pnpm only: npm refuses to install here, but writes this file before refusing
+package-lock.json
 
 # Expo
 .expo/

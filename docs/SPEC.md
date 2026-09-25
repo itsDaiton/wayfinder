@@ -235,7 +235,7 @@ The route logic is plain TypeScript with no React Native imports, unit-tested wi
 
 ### 9.6 Build and release
 
-- One **Dockerfile** (Java 17, Android SDK, Node) runs `npm ci`, `npx expo prebuild --platform android --clean` and a Gradle release build. The APK is signed by passing the signing key in with Gradle's `-Pandroid.injected.signing.*` properties. The generated `android/` folder isn't committed.
+- One **Dockerfile** (Java 17, Android SDK, Node, pnpm) runs `pnpm install --frozen-lockfile`, `pnpm expo prebuild --platform android --clean` and a Gradle release build. The APK is signed by passing the signing key in with Gradle's `-Pandroid.injected.signing.*` properties. The generated `android/` folder isn't committed.
 - The same image builds the APK **locally** with one command and in **GitHub Actions** on every push to `main`. In CI the APK is kept as a workflow artifact, never published as a public Release.
 - **Secrets** (signing key, its passwords, Mapy.com API key) are passed in at build time and never stored in the image or the repo. Locally they live in files that git ignores.
 - The Mapy.com key ends up inside the APK, where anyone with the file could extract it. That's acceptable for a personal app, as long as APKs aren't shared publicly.

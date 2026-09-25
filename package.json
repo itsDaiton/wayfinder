@@ -2,8 +2,10 @@
   "name": "wayfinder",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@12.6.0",
   "main": "expo-router/entry",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "expo start",
     "android": "expo run:android",
     "lint": "eslint . --max-warnings=0",

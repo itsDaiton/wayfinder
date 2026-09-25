@@ -4,4 +4,5 @@ A personal Android app for planning running, walking and cycling routes on Mapy.
 
 - [Product spec](docs/SPEC.md): how the app behaves, and the technical decisions
 - [v1 epic](https://github.com/itsDaiton/wayfinder/issues/2): the tickets for version 1
+- [CONTEXT.md](CONTEXT.md): the domain glossary
 - [AGENTS.md](AGENTS.md): how to work in this repo

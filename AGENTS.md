@@ -18,9 +18,13 @@ The repo currently holds documents only; there is no code yet.
   - how the app behaves (§1–8)
   - the technical decisions (§9)
   - the acceptance checklist for version 1 (§10)
+- **[CONTEXT.md](./CONTEXT.md)** is the domain glossary: Route, Point, Leg, Draft, Saved route and so on. Use its terms in issues, code, tests and commits, and avoid the synonyms it lists.
 - **GitHub Issues** hold the work. Version 1 is epic [#2](https://github.com/itsDaiton/wayfinder/issues/2), with one sub-issue per ticket. Version 2 is backlog epic [#17](https://github.com/itsDaiton/wayfinder/issues/17).
 
-A change that alters how the app behaves updates `docs/SPEC.md` in the same PR. A change to how the repo works (workflow, conventions) updates this file in the same PR. Docs that describe the old way are a bug, not a nit.
+Keep these docs current in the same PR as the change. Docs that describe the old way are a bug, not a nit.
+- How the app behaves → `docs/SPEC.md`.
+- A domain term added, renamed or retired → `CONTEXT.md`.
+- How the repo works (workflow, conventions) → this file.
 
 ---
 
@@ -60,10 +64,11 @@ Every issue is a ticket with the key **`WAY-<issue-number>`**: issue `#5` is `WA
 ### Pull requests
 
 - Open PRs against `main`, as drafts until they're ready for review.
-- The body has:
+- Fill the template in [`.github/pull_request_template.md`](./.github/pull_request_template.md). It has:
   - a short summary of what changed and why
   - `Closes #<n>`
   - a test plan, including which SPEC §10 checklist items were checked on the phone
+  - a docs checklist (SPEC, AGENTS, CONTEXT)
 - Keep PRs small. A ticket too big for one PR should be split into new tickets, not left half-closed.
 
 ---
@@ -79,6 +84,7 @@ Tickets follow the skeleton in [`.github/ISSUE_TEMPLATE.md`](./.github/ISSUE_TEM
 - **Detailed enough to implement cold,** by someone with no other context: explain the why, name the files, modules and patterns, and call out the traps and the seams to test.
 - **No code snippets or line numbers.** They go stale.
 - **Point to the spec.** Link the SPEC sections the ticket implements instead of restating decisions differently.
+- **Use the glossary.** Name things with the terms from `CONTEXT.md`.
 
 **Labels:**
 - `enhancement` for a `feat`, `bug` for a `fix`.

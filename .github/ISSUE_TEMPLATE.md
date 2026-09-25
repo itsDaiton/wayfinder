@@ -6,6 +6,7 @@ A ticket is written BEFORE implementation, for someone who may pick it up with n
   • Detailed enough to implement cold: explain the why, name the files/modules/patterns, the traps,
     and the seams to test. No code snippets or line numbers (they go stale).
   • Link the docs/SPEC.md sections this implements rather than restating decisions differently.
+  • Use the terms from CONTEXT.md (Route, Point, Leg, Draft, …).
   • Title: `type(scope): summary` with type `feat` or `fix`. Once the issue has a number, edit the
     title to `type(scope): WAY-<n> summary`. The implementing PR reuses it exactly.
   • Labels: `enhancement` (feat) or `bug` (fix), plus `ready-for-agent` or `ready-for-human`.

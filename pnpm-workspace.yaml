@@ -1,0 +1,24 @@
+# pnpm settings. Since pnpm 11, this file is the only place pnpm reads them from:
+# .npmrc holds registry and auth entries only. See https://pnpm.io/settings
+
+# A flat node_modules, like npm's. Expo supports pnpm's default symlinked layout,
+# but some React Native libraries still break under it when building the native
+# app, and Expo's fix is this setting:
+# https://docs.expo.dev/guides/monorepos/#package-managers-with-isolated-dependencies
+nodeLinker: hoisted
+
+# Dependencies allowed to run install scripts. Any other dependency with one
+# fails the install (strictDepBuilds) until it's reviewed and listed here.
+allowBuilds:
+  # Checks that ESLint's import resolver has its native binding for this machine.
+  unrs-resolver: true
+
+packageExtensions:
+  # react-native-worklets lists `@react-native/metro-config: *` as a required peer
+  # but never imports it. As a required peer, pnpm would install the newest one,
+  # from a newer React Native than ours, and hoist its @react-native/* packages
+  # next to our react-native. Marking the peer optional keeps it out.
+  react-native-worklets:
+    peerDependenciesMeta:
+      '@react-native/metro-config':
+        optional: true

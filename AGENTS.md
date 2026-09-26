@@ -114,6 +114,7 @@ Every issue is a ticket with the key **`WAY-<issue-number>`**: issue `#5` is `WA
   - a test plan, including which SPEC §10 checklist items were checked on the phone
   - a docs checklist (SPEC, AGENTS, CONTEXT)
 - Keep PRs small. A ticket too big for one PR should be split into new tickets, not left half-closed.
+- **No timed check-ins on PRs.** Never schedule Routines or `send_later` reminders to re-check a PR, hourly or otherwise. The PR's own activity events (comments, reviews, CI) are enough.
 
 ---
 

@@ -1,0 +1,10 @@
+nodeLinker: hoisted
+
+allowBuilds:
+  unrs-resolver: true
+
+packageExtensions:
+  react-native-worklets:
+    peerDependenciesMeta:
+      '@react-native/metro-config':
+        optional: true

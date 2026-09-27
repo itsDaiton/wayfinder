@@ -31,8 +31,8 @@ missing or broken, the SPEC sections and decisions that bound the solution, and 
 ## Scope
 
 | Area | What changes |
-| --- | --- |
-|  |  |
+| ---- | ------------ |
+|      |              |
 
 ## Acceptance criteria
 

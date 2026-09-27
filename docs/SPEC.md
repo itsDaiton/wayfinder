@@ -74,11 +74,11 @@ It exists because creating routes in Strava requires a paid subscription, and Go
 
 A stats bar is always visible while planning and updates after every change:
 
-| Stat | Shown as | Notes |
-|---|---|---|
-| Distance | `10.4 km` | Total length of the route |
+| Stat           | Shown as  | Notes                                                                                                                                          |
+| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Distance       | `10.4 km` | Total length of the route                                                                                                                      |
 | Elevation gain | `↑ 124 m` | Total climbing along the route. Tiny ups and downs of a few metres are ignored so noise in the elevation data doesn't add up to fake climbing. |
-| Estimated time | `1:08` | Distance × the pace set for the selected activity. Climbing isn't taken into account. |
+| Estimated time | `1:08`    | Distance × the pace set for the selected activity. Climbing isn't taken into account.                                                          |
 
 ### 4.7 Saving a route
 
@@ -191,6 +191,8 @@ Agreed in the spec review on 25 Sep 2026.
 ### 9.1 App
 
 - **React Native with Expo**, in TypeScript. The map library contains native code, so the app runs as an Expo development build, not in Expo Go.
+- **No backend.** The app calls Mapy.com directly and keeps everything in SQLite on the phone. The Backup file covers a lost phone. A server only becomes worth it for syncing between devices, which isn't planned.
+- **Screens:** Expo Router, with one file per screen in `src/app/`.
 - **Map:** `@maplibre/maplibre-react-native` showing Mapy.com image tiles. The route is drawn as a line on top. The Mapy.com logo and copyright link are a normal view placed over the map.
 - **Storage:** `expo-sqlite`. Each route stores an accent-free copy of its name for search. The draft is stored the same way as saved routes.
 - **Other libraries:** `expo-location` (GPS), `@react-native-community/netinfo` (offline detection), `expo-file-system` + `expo-sharing` (GPX and backup export), `expo-document-picker` (backup import), `i18next` + `expo-localization` (translations), `Intl.NumberFormat` (Czech/English number formats).
@@ -198,11 +200,11 @@ Agreed in the spec review on 25 Sep 2026.
 
 ### 9.2 Mapy.com
 
-| Need | Mapy.com API | Notes |
-|---|---|---|
-| Map | `/v1/maptiles/{style}/{size}/{z}/{x}/{y}` | High-resolution `256@2x` tiles exist only for basic and outdoor. Winter and aerial use `256`, so they look slightly softer. |
-| Route parts | `/v1/routing/route` | Run/Walk uses `foot_fast`, Bike uses `bike_road`. The response gives the path, its length, and for each point the snapped position and `snapDistance`. |
-| Elevation | `/v1/elevation` | Up to 256 positions per request. Missing data comes back as `-100000`. |
+| Need        | Mapy.com API                              | Notes                                                                                                                                                  |
+| ----------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Map         | `/v1/maptiles/{style}/{size}/{z}/{x}/{y}` | High-resolution `256@2x` tiles exist only for basic and outdoor. Winter and aerial use `256`, so they look slightly softer.                            |
+| Route parts | `/v1/routing/route`                       | Run/Walk uses `foot_fast`, Bike uses `bike_road`. The response gives the path, its length, and for each point the snapped position and `snapDistance`. |
+| Elevation   | `/v1/elevation`                           | Up to 256 positions per request. Missing data comes back as `-100000`.                                                                                 |
 
 - `snapDistance` over 200 m means the tap is rejected. A `404` with `errorCode` 7 (outside the network for this activity) or 9 (not connected) means there's no path connection.
 - Rate limits: 30 requests per second for routing and elevation, at most 15 waypoints per routing request.
@@ -233,11 +235,12 @@ The route logic is plain TypeScript with no React Native imports, unit-tested wi
 
 ### 9.6 Build and release
 
-- One **Dockerfile** (Java 17, Android SDK, Node) runs `npm ci`, `npx expo prebuild --platform android --clean` and a Gradle release build. The APK is signed by passing the signing key in with Gradle's `-Pandroid.injected.signing.*` properties. The generated `android/` folder isn't committed.
+- One **Dockerfile** (Java 17, Android SDK, Node, pnpm) runs `pnpm install --frozen-lockfile`, `pnpm expo prebuild --platform android --clean` and a Gradle release build. The APK is signed by passing the signing key in with Gradle's `-Pandroid.injected.signing.*` properties. The generated `android/` folder isn't committed.
 - The same image builds the APK **locally** with one command and in **GitHub Actions** on every push to `main`. In CI the APK is kept as a workflow artifact, never published as a public Release.
 - **Secrets** (signing key, its passwords, Mapy.com API key) are passed in at build time and never stored in the image or the repo. Locally they live in files that git ignores.
 - The Mapy.com key ends up inside the APK, where anyone with the file could extract it. That's acceptable for a personal app, as long as APKs aren't shared publicly.
 - The **signing key** is created once and backed up outside the repo and the phone. Without it, an update can only be installed by uninstalling first, which deletes all saved routes.
+- The Android package name is `com.itsdaiton.wayfinder`. It can't change later: Android treats a different name as a separate app, and the saved routes stay behind in the old one.
 
 ### 9.7 Loop generator approach (v2)
 

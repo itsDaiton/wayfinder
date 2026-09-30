@@ -64,12 +64,13 @@ Run `lint`, `format:check` and `typecheck` before calling a change done. Tests (
 
 ### CI
 
-The `ci` workflow ([`.github/workflows/ci.yml`](./.github/workflows/ci.yml)) runs on every PR to `main`, Dependabot's included.
+The `ci` workflow ([`.github/workflows/ci.yml`](./.github/workflows/ci.yml)) runs on every PR to `main`, Dependabot's included, except the release PR.
 
 - **`install` runs first:** `pnpm install --frozen-lockfile`, so the [supply-chain rules](#pnpm-rules) apply. If it fails, nothing else runs.
 - **Then the `lint`, `format` (`pnpm format:check`) and `typecheck` jobs run in parallel**, each reporting on its own. Jobs don't share files, so each one installs again from the pnpm store that `install` cached.
 - **A new check script goes into the workflow's matrix in the same PR** (a job `name` and the `script` it runs), e.g. `test` with WAY-3.
 - **Its actions are pinned to a commit hash with the version in a comment** (`uses: owner/action@<sha> # v1.2.3`). Dependabot updates both.
+- **The release PR is skipped with `paths-ignore`** on the four files it changes: `.release-please-manifest.json`, `CHANGELOG.md`, `app.json` and `package.json`. Opening it does start a run, but the `release-please` workflow merges it seconds later, before the run starts its jobs, so the run fails with "a workflow file issue". The filter skips any PR that changes only those files, so run the checks locally when a PR touches only `package.json` or `app.json`.
 - **It's not a required check**, because the release PR gets no run (see [Versioning](#versioning)).
 
 Machine setup and seeing the phone screen from VS Code are in the [README](./README.md#run-it-locally).
@@ -166,7 +167,7 @@ The app has one version, kept identical in `package.json` and `app.json` (`expo.
 - `feat` bumps the minor version and `fix` the patch. A `!` (breaking change) also bumps the minor version while the app is below 1.0.0. Version 1.0.0 is a deliberate step: add a `Release-As: 1.0.0` footer to a commit.
 - The workflow merges the release PR itself (squash) right away, then creates the `wayfinder-v<version>` tag and a GitHub Release in the same run. So every `feat` or `fix` that lands on `main` becomes a released version. The Release holds only notes and never an APK (SPEC §9.6).
 - The release PR and its commit are titled `chore(main): release wayfinder <version>`, Release Please's own format. It's the one `chore` the repo allows: it is left out of the changelog and never triggers a release itself.
-- The merge and tag happen in one run because pushes made with the default token don't trigger other workflows. A workflow that should run on the tag, such as the APK build, needs a personal access token or GitHub App token in place of the default one. The release PR also gets no [`ci`](#ci) run for the same reason, so don't make a check required on `main` without changing this.
+- The merge and tag happen in one run because pushes made with the default token don't trigger other workflows. A workflow that should run on the tag, such as the APK build, needs a personal access token or GitHub App token in place of the default one. The release PR gets no [`ci`](#ci) run either: it's merged seconds after it opens, and `ci` skips it. So don't make a check required on `main` without changing this.
 - This works because PRs are squash-merged, so the PR title becomes the commit subject on `main`.
 - Actions needs "Allow GitHub Actions to create and approve pull requests" turned on in the repo settings.
 

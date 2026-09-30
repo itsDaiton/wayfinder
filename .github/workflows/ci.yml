@@ -3,6 +3,11 @@ name: ci
 on:
   pull_request:
     branches: [main]
+    paths-ignore:
+      - .release-please-manifest.json
+      - CHANGELOG.md
+      - app.json
+      - package.json
 
 permissions:
   contents: read

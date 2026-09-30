@@ -2,9 +2,11 @@
   "expo": {
     "name": "Wayfinder",
     "slug": "wayfinder",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "scheme": "wayfinder",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +20,9 @@
       },
       "predictiveBackGestureEnabled": false
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router"
+    ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true

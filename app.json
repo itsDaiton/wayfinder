@@ -2,7 +2,7 @@
   "expo": {
     "name": "Wayfinder",
     "slug": "wayfinder",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "scheme": "wayfinder",
     "platforms": [
       "android"

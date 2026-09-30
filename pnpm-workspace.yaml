@@ -1,5 +1,55 @@
 nodeLinker: hoisted
 
+# Supply chain rules: AGENTS.md → Dependencies.
+
+# Install only versions published at least 10 days ago (the value is in minutes), transitive
+# ones included. Dependabot's cooldown in .github/dependabot.yml is the same 10 days.
+minimumReleaseAge: 14400
+minimumReleaseAgeExclude:
+  # Already in pnpm-lock.yaml when the 10-day rule came in. All are old enough from
+  # 5 Oct 2026: delete the whole list then.
+  - '@expo/cli@57.0.27'
+  - '@expo/router-server@57.0.11'
+  - '@expo/ui@57.0.20'
+  - '@typescript-eslint/eslint-plugin@8.70.1'
+  - '@typescript-eslint/parser@8.70.1'
+  - '@typescript-eslint/project-service@8.70.1'
+  - '@typescript-eslint/scope-manager@8.70.1'
+  - '@typescript-eslint/tsconfig-utils@8.70.1'
+  - '@typescript-eslint/type-utils@8.70.1'
+  - '@typescript-eslint/types@8.70.1'
+  - '@typescript-eslint/typescript-estree@8.70.1'
+  - '@typescript-eslint/utils@8.70.1'
+  - '@typescript-eslint/visitor-keys@8.70.1'
+  - 'babel-preset-expo@57.0.13'
+  - 'baseline-browser-mapping@2.11.26'
+  - 'browserslist@4.29.1'
+  - 'caniuse-lite@1.0.30001812'
+  - 'electron-to-chromium@1.5.438'
+  - 'expo-glass-effect@57.0.4'
+  - 'expo-linking@57.0.11'
+  - 'expo-modules-core@57.0.19'
+  - 'expo-modules-jsi@57.1.1'
+  - 'expo-router@57.0.23'
+  - 'expo@57.0.25'
+  - 'ignore@7.0.10'
+  - 'node-releases@2.0.57'
+  - 'prettier@3.9.9'
+minimumReleaseAgeExcludePrune: true
+
+# Refuse a version published with weaker evidence (trusted publisher, provenance) than earlier
+# releases of the same package: the usual sign of a hijacked maintainer account.
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Backports to an older major line, published by the usual maintainer without provenance.
+  - 'semver@6.3.1'
+  - 'eslint-import-resolver-typescript@3.10.1'
+trustPolicyExcludePrune: true
+
+# Keep one version of a package wherever one satisfies every range. Expo warns about
+# duplicate native modules.
+autoDedupe: true
+
 allowBuilds:
   unrs-resolver: true
 

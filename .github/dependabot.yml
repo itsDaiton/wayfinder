@@ -1,0 +1,54 @@
+# Dependency updates. The rules behind this file: AGENTS.md → Dependencies.
+version: 2
+
+updates:
+  # "npm" covers pnpm too: Dependabot updates package.json and pnpm-lock.yaml.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Same 10 days as minimumReleaseAge in pnpm-workspace.yaml.
+    cooldown:
+      default-days: 10
+    commit-message:
+      prefix: fix(deps)
+    ignore:
+      # The Expo SDK decides these versions (`pnpm expo install --check`). Only patch releases
+      # inside its ranges are safe; anything bigger moves with an SDK upgrade.
+      - dependency-name: expo
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      - dependency-name: expo-*
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      - dependency-name: eslint-config-expo
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      - dependency-name: react-native-*
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      - dependency-name: '@types/react'
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      - dependency-name: typescript
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      # The SDK pins these to one exact version, so not even a patch release fits.
+      - dependency-name: react
+      - dependency-name: react-dom
+      - dependency-name: react-native
+      - dependency-name: react-native-reanimated
+      - dependency-name: react-native-worklets
+    groups:
+      # Expo ships its packages together, so their patch releases come as one PR.
+      expo-sdk:
+        patterns: [expo, expo-*, eslint-config-expo, react-native-*, '@types/react', typescript]
+      # Everything else: minor and patch releases in one PR, each major release on its own.
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 10
+    commit-message:
+      prefix: fix(deps)
+    groups:
+      github-actions:
+        patterns: ['*']

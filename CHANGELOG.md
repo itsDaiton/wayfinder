@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/itsDaiton/wayfinder/compare/v0.2.0...v0.2.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* **build:** merge Release Please PRs automatically ([#22](https://github.com/itsDaiton/wayfinder/issues/22)) ([5b00e20](https://github.com/itsDaiton/wayfinder/commit/5b00e200029fc9f9acc1e811f2da39c31aea27e0))
+
 ## [0.2.0](https://github.com/itsDaiton/wayfinder/compare/v0.1.0...v0.2.0) (2026-09-30)
 
 

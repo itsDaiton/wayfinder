@@ -1,6 +1,7 @@
 # pnpm writes this file itself; formatting it would fight every install.
 pnpm-lock.yaml
 
-# Release Please writes these itself; formatting them would fight every release PR.
+# Release Please writes these itself (it re-expands app.json's arrays); formatting them would fight every release PR.
 CHANGELOG.md
 .release-please-manifest.json
+app.json

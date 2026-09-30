@@ -40,7 +40,7 @@ jobs:
 
   # Jobs don't share files, so each check installs again, from the pnpm store cached above.
   check:
-    name: ${{ matrix.script }}
+    name: ${{ matrix.name }}
     needs: install
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -48,7 +48,13 @@ jobs:
       # Let every check finish even when one fails, so one run reports all the problems.
       fail-fast: false
       matrix:
-        script: [lint, format:check, typecheck]
+        include:
+          - name: lint
+            script: lint
+          - name: format
+            script: format:check
+          - name: typecheck
+            script: typecheck
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

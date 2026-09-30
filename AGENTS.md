@@ -67,8 +67,8 @@ Run `lint`, `format:check` and `typecheck` before calling a change done. Tests (
 The `ci` workflow ([`.github/workflows/ci.yml`](./.github/workflows/ci.yml)) runs on every PR to `main`, Dependabot's included.
 
 - **`install` runs first:** `pnpm install --frozen-lockfile`, so the [supply-chain rules](#pnpm-rules) apply. If it fails, nothing else runs.
-- **Then `lint`, `format:check` and `typecheck` run as parallel jobs**, each reporting on its own. Jobs don't share files, so each one installs again from the pnpm store that `install` cached.
-- **A new check script goes into the workflow's `script` matrix in the same PR**, e.g. `test` with WAY-3.
+- **Then the `lint`, `format` (`pnpm format:check`) and `typecheck` jobs run in parallel**, each reporting on its own. Jobs don't share files, so each one installs again from the pnpm store that `install` cached.
+- **A new check script goes into the workflow's matrix in the same PR** (a job `name` and the `script` it runs), e.g. `test` with WAY-3.
 - **Its actions are pinned to a commit hash with the version in a comment** (`uses: owner/action@<sha> # v1.2.3`). Dependabot updates both.
 - **It's not a required check**, because the release PR gets no run (see [Versioning](#versioning)).
 

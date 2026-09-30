@@ -126,7 +126,7 @@ The app has one version, kept identical in `package.json` and `app.json` (`expo.
 - On every push to `main`, the `release-please` workflow opens or updates one release PR. It bumps both versions and writes `CHANGELOG.md` from the Conventional Commits since the last release.
 - `feat` bumps the minor version and `fix` the patch. A `!` (breaking change) also bumps the minor version while the app is below 1.0.0. Version 1.0.0 is a deliberate step: add a `Release-As: 1.0.0` footer to a commit.
 - The workflow merges the release PR itself (squash) right away, then creates the `wayfinder-v<version>` tag and a GitHub Release in the same run. So every `feat` or `fix` that lands on `main` becomes a released version. The Release holds only notes and never an APK (SPEC §9.6).
-- The release PR is titled `fix: release wayfinder <version>`, to stay within the `feat`/`fix` commit types.
+- The release PR and its commit are titled `chore(main): release wayfinder <version>`, Release Please's own format. It's the one `chore` the repo allows: it is left out of the changelog and never triggers a release itself.
 - The merge and tag happen in one run because pushes made with the default token don't trigger other workflows. A workflow that should run on the tag, such as the APK build, needs a personal access token or GitHub App token in place of the default one. The release PR also gets no CI run for the same reason, so don't make a check required on `main` without changing this.
 - This works because PRs are squash-merged, so the PR title becomes the commit subject on `main`.
 - Actions needs "Allow GitHub Actions to create and approve pull requests" turned on in the repo settings.

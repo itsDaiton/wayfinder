@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.0...wayfinder-v0.3.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* **build:** use the default release PR title, tidy the 0.3.0 changelog ([#26](https://github.com/itsDaiton/wayfinder/issues/26)) ([de09945](https://github.com/itsDaiton/wayfinder/commit/de0994546f8a636be980d2964db4134ffce1e560))
+
 ## [0.3.0](https://github.com/itsDaiton/wayfinder/compare/v0.2.1...wayfinder-v0.3.0) (2026-09-30)
 
 

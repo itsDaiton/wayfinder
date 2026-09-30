@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.1...wayfinder-v0.3.2) (2026-09-30)
+
+
+### Bug Fixes
+
+* **build:** add dependabot and pnpm supply-chain rules ([#28](https://github.com/itsDaiton/wayfinder/issues/28)) ([6021dca](https://github.com/itsDaiton/wayfinder/commit/6021dcaeb9720e9c4e6d6ec019460abc21da639e))
+
 ## [0.3.1](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.0...wayfinder-v0.3.1) (2026-09-30)
 
 

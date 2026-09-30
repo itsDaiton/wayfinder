@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.2...wayfinder-v0.3.3) (2026-09-30)
+
+
+### Bug Fixes
+
+* **build:** run lint, format and typecheck on pull requests ([#31](https://github.com/itsDaiton/wayfinder/issues/31)) ([fcb9408](https://github.com/itsDaiton/wayfinder/commit/fcb940806ac3a81ffa9290bfe7d762fbfce3d2d6))
+
 ## [0.3.2](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.1...wayfinder-v0.3.2) (2026-09-30)
 
 

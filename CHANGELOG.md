@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.3...wayfinder-v0.3.4) (2026-09-30)
+
+
+### Bug Fixes
+
+* **build:** skip the ci workflow on the release PR ([#33](https://github.com/itsDaiton/wayfinder/issues/33)) ([4dc5209](https://github.com/itsDaiton/wayfinder/commit/4dc5209158cbd9ffac0206e967abeb5f06309040))
+
 ## [0.3.3](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.2...wayfinder-v0.3.3) (2026-09-30)
 
 

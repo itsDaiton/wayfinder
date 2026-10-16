@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.5](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.4...wayfinder-v0.3.5) (2026-10-16)
+
+
+### Bug Fixes
+
+* **deps:** bump googleapis/release-please-action ([5815e4c](https://github.com/itsDaiton/wayfinder/commit/5815e4c24c60231c6bcfaf0bb6c75daec5a01403))
+* **deps:** bump googleapis/release-please-action from 4 to 5 in the github-actions group across 1 directory ([#30](https://github.com/itsDaiton/wayfinder/issues/30)) ([5815e4c](https://github.com/itsDaiton/wayfinder/commit/5815e4c24c60231c6bcfaf0bb6c75daec5a01403))
+
 ## [0.3.4](https://github.com/itsDaiton/wayfinder/compare/wayfinder-v0.3.3...wayfinder-v0.3.4) (2026-09-30)
 
 
